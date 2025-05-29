@@ -1,0 +1,13 @@
+<?php
+$host = "db4free.net"; //Fue el usado para el proyecto y el recomendado
+$user = "usuario"; //Usuario creado en el host
+$password = "contraseña"; //Contraseña seleccionada
+$database = "nombre_base"; //Nombre de la base a utilizar
+
+$conexion = new mysqli($host, $user, $password, $database);
+$conexion->set_charset("utf8");
+
+if ($conexion->connect_error) {
+    die("Conexión fallida: " . $conexion->connect_error);
+}
+?>
