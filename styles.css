@@ -11,6 +11,7 @@ body {
   justify-content: space-between;
   padding: 1em;
   background-color: #BFE57E;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .logo {
@@ -22,6 +23,7 @@ body {
 
 .titulo {
   margin: 0;
+  margin-right: 5%;
   font-size: 1.89em;
   text-align: center;
   flex-grow: 1;
@@ -29,7 +31,7 @@ body {
 
 .contenido {
   max-width: 945px;
-  margin: auto;
+  margin: 10px;
   padding: 1.05em;
   text-align: center;
 }
@@ -61,6 +63,7 @@ button {
 
 button:hover {
   background-color: #a8d76a;
+  transform: scale(1.075);
 }
 
 .ingredientes-lista {

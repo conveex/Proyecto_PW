@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,31 +8,43 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="resources/logo.png" type="image/png">
 </head>
-<body>
+
+<body style="background-color: #d4eaab;">
   <header class="header">
     <img src="resources/logo.png" alt="Logo" class="logo">
     <h1 class="titulo">Recetario por Ingredientes</h1>
   </header>
 
-  <main class="contenido">
-    <section class="buscador">
-      <h2>Busca y selecciona ingredientes:</h2>
-      <input type="text" id="inputIngrediente" placeholder="Ej. tomate, pollo..." />
-      <div id="sugerencias" class="sugerencias"></div>
-    </section>
+  <div id="contenedor_principal" class="contenedor_principal" style="
+    padding: 10px;
+    width: 55%;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background-color: #fff;
+    border-radius: 5px;
+  ">
+    <main class="contenido">
+      <section class="buscador">
+        <h2>Busca y selecciona ingredientes:</h2>
+        <input type="text" id="inputIngrediente" placeholder="Ej. tomate, pollo..." />
+        <div id="sugerencias" class="sugerencias"></div>
+      </section>
 
-    <section>
-      <h3>Ingredientes seleccionados:</h3>
-      <ul id="ingredientesSeleccionados" class="ingredientes-lista"></ul>
-      <button id="btnBuscarPlatillos">Buscar platillos</button>
-    </section>
+      <section>
+        <h3>Ingredientes seleccionados:</h3>
+        <ul id="ingredientesSeleccionados" class="ingredientes-lista"></ul>
+        <button id="btnBuscarPlatillos">Buscar platillos</button>
+      </section>
 
-    <section>
-      <h2>Platillos encontrados:</h2>
-      <div id="resultados" class="resultados"></div>
-    </section>
-  </main>
+      <section>
+        <h2>Platillos encontrados:</h2>
+        <div id="resultados" class="resultados"></div>
+      </section>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
