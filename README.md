@@ -40,7 +40,7 @@ recetario-inteligente/
 1. **Clona el repositorio:**
 
    ```bash
-   git clone https://github.com/conveex/recetario-inteligente.git
+   git clone https://github.com/conveex/Proyecto_PW.git
    cd recetario-inteligente
    ```
 
