@@ -1,0 +1,99 @@
+<?php
+
+require 'db_config.php';
+
+require 'vendor/PHPMailer/src/Exception.php';
+require 'vendor/PHPMailer/src/PHPMailer.php';
+require 'vendor/PHPMailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+function enviarCorreoConfirmacion($correo, $nombre, $token) {
+    $mail = new PHPMailer(true);
+
+    try {
+        $mail->isSMTP();
+        $mail->Host       = 'smtp.gmail.com'; // El ejemplo usa gmail pero se puede usar otro servicio
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'correo@gmail.com'; // Correo que enviara los emails
+        $mail->Password   = 'contraseña'; // Contraseña se recomienda contraseña de aplicacion
+        $mail->SMTPSecure = 'tls';
+        $mail->Port       = 587;
+
+        $mail->setFrom('diegovazquez210803@gmail.com', 'Proyecto PW');
+        $mail->addAddress($correo, $nombre);
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Confirma tu correo';
+        $linkConfirmacion = "http://localhost/Proyecto_PW/confirmar.php?token=$token";
+
+        $mail->Body = "<p>Hola <b>$nombre</b>,</p>
+                       <p>Gracias por registrarte. Por favor confirma tu correo haciendo clic en el siguiente enlace:</p>
+                       <p><a href='$linkConfirmacion'>$linkConfirmacion</a></p>
+                       <p>Si no solicitaste esto, ignora este correo.</p>";
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        return "Error al enviar correo: {$mail->ErrorInfo}";
+    }
+}
+
+$mensaje = '';
+$errores = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nombre = trim($_POST['nombre'] ?? '');
+    $correo = trim($_POST['correo'] ?? '');
+    $contrasena = $_POST['contrasena'] ?? '';
+    $errores = [];
+
+    if (!$nombre) $errores['nombre'] = "El nombre es obligatorio.";
+    if (!$correo || !filter_var($correo, FILTER_VALIDATE_EMAIL)) $errores['correo'] = "Correo inválido.";
+    if (!$contrasena || strlen($contrasena) < 6) $errores['contrasena'] = "La contraseña debe tener al menos 6 caracteres.";
+
+    if (empty($errores)) {
+        $stmt = $conexion->prepare("SELECT id FROM usuarios WHERE correo = ?");
+        $stmt->bind_param("s", $correo);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $errores['correo'] = "El correo ya está registrado.";
+        } else {
+            $stmt->close();
+
+            $hash = password_hash($contrasena, PASSWORD_DEFAULT);
+
+            $stmt = $conexion->prepare("INSERT INTO usuarios (nombre, correo, contrasena_hash, confirmado) VALUES (?, ?, ?, 0)");
+            $stmt->bind_param("sss", $nombre, $correo, $hash);
+
+            if ($stmt->execute()) {
+                $usuario_id = $stmt->insert_id;
+
+                // Generar token random para confirmación
+                $token = bin2hex(random_bytes(32));
+
+                // Guardar token en tabla confirmaciones
+                $stmt->close();
+                $stmt = $conexion->prepare("INSERT INTO confirmaciones (usuario_id, token) VALUES (?, ?)");
+                $stmt->bind_param("is", $usuario_id, $token);
+                $stmt->execute();
+
+                // Enviar correo
+                $resultado = enviarCorreoConfirmacion($correo, $nombre, $token);
+
+                if ($resultado === true) {
+                    echo "Registro exitoso. Por favor revisa tu correo para confirmar tu cuenta.";
+                    exit;
+                } else {
+                    echo $resultado; // error de envío
+                }
+            } else {
+                echo "Error al registrar usuario.";
+            }
+        }
+    }
+}
+?>

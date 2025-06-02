@@ -22,11 +22,19 @@ recetario-inteligente/
 ├── sql/
 │   ├── schema.sql            # Estructura de la base de datos
 │   └── seed.sql              # Datos de ejemplo
+├── vendor/
+│   └── PHPMailer             # Libreria requerida para verificación de email (IGNORADO por Git)
+├── confirmar.php             # Verifica el token del correo
 ├── db_config.php             # Configuración de conexión (IGNORADO por Git)
 ├── db_config.php.example     # Plantilla editable para conexión
 ├── get_ingredientes.php      # Devuelve los ingredientes en JSON
 ├── get_platillos.php         # Devuelve los platillos con sus datos
 ├── index.html                # Página principal
+├── login.php                 # Verifica credenciales con la BD
+├── loginRegistro.js          # Lógica de IU login/registro
+├── recetario.html            # Página de busqueda de platillos
+├── registro.php              # Registra datos y envia correo (IGNORADO por Git)
+├── registro.php.example      # Plantilla editable para registro
 ├── script.js                 # Lógica del frontend
 ├── styles.css                # Estilos CSS
 ├── .gitignore                # Archivos y carpetas excluidos de Git
@@ -63,6 +71,12 @@ recetario-inteligente/
    - Copia `db_config.php.example` como `db_config.php`.
    - Edita con tus datos de conexión (`host`, `usuario`, `contraseña`, `nombreBD`).
    - Asegúrate de que `db_config.php` esté en `.gitignore` para evitar subir credenciales.
+
+5. **Descarga PHPMailer y coloca en directorio:**
+
+   - Entra a https://github.com/PHPMailer/PHPMailer y descarga el .zip.
+   - Descomprime en la subcarpeta del proyecto vendor.
+   - Renombra la carpeta resultante a PHPMailer.
 
 ---
 

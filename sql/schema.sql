@@ -29,7 +29,17 @@ CREATE TABLE usuarios (
     nombre VARCHAR(25) NOT NULL,
     correo VARCHAR(40) NOT NULL UNIQUE,
     contrasena_hash VARCHAR(255) NOT NULL,
+    confirmado TINYINT(1) NOT NULL DEFAULT 0,
     fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE confirmaciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    creado_en DATETIME DEFAULT CURRENT_TIMESTAMP,
+    usado TINYINT(1) DEFAULT 0,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 
 CREATE TABLE sugerencias_ingredientes (

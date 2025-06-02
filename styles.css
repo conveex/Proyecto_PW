@@ -11,7 +11,7 @@ body {
   justify-content: space-between;
   padding: 1em;
   background-color: #BFE57E;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -36,9 +36,12 @@ body {
   text-align: center;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 420px;
+  max-width: 100%;
   padding: 0.735em;
   font-size: 1.05em;
   border: 1px solid #ccc;
@@ -129,7 +132,7 @@ button:hover {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 1.05em;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, width 0.3s ease;
   position: relative;
   display: flex;
@@ -175,10 +178,30 @@ button:hover {
   cursor: pointer;
 }
 
+.enlace {
+  text-decoration: none;
+  color: #333;
+}
+
+.enlace:hover {
+  text-decoration: none;
+  color: #5b8731;
+}
+
+#contenedor_vistas {
+  width: 360px;
+  margin: 50px auto;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+}
+
 @media screen and (max-width: 600px) {
   .contenido {
     padding: 0.525em;
   }
+
   .card {
     width: 100%;
   }
