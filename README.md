@@ -32,11 +32,17 @@ recetario-inteligente/
 ├── index.html                # Página principal
 ├── login.php                 # Verifica credenciales con la BD
 ├── loginRegistro.js          # Lógica de IU login/registro
+├── logout.php                # Cierra la sesión de usuario o invitado
 ├── recetario.html            # Página de busqueda de platillos
 ├── registro.php              # Registra datos y envia correo (IGNORADO por Git)
 ├── registro.php.example      # Plantilla editable para registro
-├── script.js                 # Lógica del frontend
+├── script.js                 # Lógica del frontend para el recetario
+├── session_status.php        # Verifica el estado de la sesion, obtiene el usuario o indica invitado
+├── sessionManager.js         # Logica frontend para obtener la sesión y generar menú de usuario/invitado
 ├── styles.css                # Estilos CSS
+├── sugerenciasComunidad.html # Página para ver las sugerencias de la comunidad 
+├── sugerirIngrediente.html   # Página para sugerir ingredientes
+├── sugerirPlatillo.html      # Página para sugerir platillos
 ├── .gitignore                # Archivos y carpetas excluidos de Git
 └── README.md                 # Este archivo
 ```
