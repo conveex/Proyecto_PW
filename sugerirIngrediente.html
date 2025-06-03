@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recetario Inteligente</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="resources/logo.png" type="image/png">
+</head>
+
+<body style="background-color: #d4eaab;">
+  <header class="header">
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+    <h1 class="titulo">Sugerir Ingrediente</h1>
+    <img src="resources/logo.png" alt="Logo" class="logo">
+  </header>
+
+  <nav id="sideMenu" class="side-menu">
+    <div class="menu-header">
+      <h3 id="menuUser">Usuario</h3>
+      <a href="#" id="loginLogoutLink">Iniciar sesión</a>
+    </div>
+    <div id="menuOpcionesUsuario" style="display: none;">
+      <ul>
+        <li><a href="sugerenciasComunidad.html">Ver sugerencias de la comunidad</a></li>
+        <li><a href="sugerirPlatillo.html">Sugerir platillo</a></li>
+        <li><a href="recetario.html">Recetario</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="overlay" class="overlay"></div>
+
+  <script src="sessionManager.js"></script>
+</body>
+
+</html>

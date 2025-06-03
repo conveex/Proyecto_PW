@@ -23,7 +23,6 @@ body {
 
 .titulo {
   margin: 0;
-  margin-right: 5%;
   font-size: 1.89em;
   text-align: center;
   flex-grow: 1;
@@ -195,6 +194,70 @@ button:hover {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -550px;
+  height: 100%;
+  width: 250px;
+  background-color: #f4fce8;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+  padding: 1em;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5em;
+}
+
+.side-menu ul li {
+  margin: 1.5em 0;
+}
+
+.side-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: normal;
+}
+
+.side-menu a:hover {
+  color: #5b8731;
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+  z-index: 900;
+}
+
+.overlay.show {
+  display: block;
+}
+
+.menu-header {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5em;
 }
 
 @media screen and (max-width: 600px) {

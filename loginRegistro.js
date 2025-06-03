@@ -6,9 +6,13 @@ const loginHTML = `
     
     <label for="loginContrasena">Contraseña:</label><br/>
     <input type="password" id="loginContrasena" name="contrasena" minlength="6" maxlength="50" required /><br/><br/>
-    
-    <button type="submit">Entrar</button>
+    <center>
+      <button type="submit">Entrar</button>
+    </center>
   </form>
+  <br/>
+  <button id="btnInvitado" style="margin-top: 10px; font-size: 0.80em; background-color:rgb(213, 243, 162);">Ingresar como invitado</button>
+
   <p>¿No tienes cuenta? <a href="#" id="linkRegistro" class="enlace">Regístrate aquí</a></p>
   <div id="mensajeLogin" style="color:red; margin-top:10px;"></div>
 `;
@@ -49,6 +53,14 @@ function cargarLogin() {
     cargarRegistro();
   };
   document.getElementById('formLogin').onsubmit = manejarLogin;
+
+  document.getElementById('btnInvitado').onclick = () => {
+    sessionStorage.setItem('usuarioSesion', JSON.stringify({
+      tipo: 'invitado',
+      nombre: 'Invitado'
+    }));
+    window.location.href = 'recetario.html';
+  };
 }
 
 function cargarRegistro() {
@@ -91,11 +103,18 @@ async function manejarLogin(e) {
     }
 
     const data = await response.json();
+
     alert(data.mensaje);
     window.location.href = 'recetario.html';
   } catch (error) {
     msg.textContent = 'Error de conexión.';
   }
+}
+
+async function cerrarSesion() {
+  sessionStorage.removeItem('usuarioSesion');
+  await fetch('logout.php', { credentials: 'include' });
+  window.location.href = 'index.html';
 }
 
 // Validación y manejo del registro

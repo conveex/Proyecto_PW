@@ -11,8 +11,9 @@
 
 <body style="background-color: #d4eaab;">
   <header class="header">
-    <img src="resources/logo.png" alt="Logo" class="logo">
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
     <h1 class="titulo">Recetario por Ingredientes</h1>
+    <img src="resources/logo.png" alt="Logo" class="logo">
   </header>
 
   <div id="contenedor_principal" class="contenedor_principal" style="
@@ -44,6 +45,21 @@
     </main>
   </div>
 
+  <nav id="sideMenu" class="side-menu">
+    <div class="menu-header">
+      <h3 id="menuUser">Usuario</h3>
+      <a href="#" id="loginLogoutLink">Iniciar sesión</a>
+    </div>
+    <div id="menuOpcionesUsuario" style="display: none;">
+      <ul>
+        <li><a href="sugerenciasComunidad.html">Ver sugerencias de la comunidad</a></li>
+        <li><a href="sugerirPlatillo.html">Sugerir platillo</a></li>
+        <li><a href="sugerirIngrediente.html">Sugerir ingrediente</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="overlay" class="overlay"></div>
+  <script src="sessionManager.js"></script>
   <script src="script.js"></script>
 </body>
 
