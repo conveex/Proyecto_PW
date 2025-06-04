@@ -5,6 +5,7 @@ $password = "contraseña"; //Contraseña seleccionada
 $database = "nombre_base"; //Nombre de la base a utilizar
 
 $conexion = new mysqli($host, $user, $password, $database);
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 $conexion->set_charset("utf8");
 
 if ($conexion->connect_error) {

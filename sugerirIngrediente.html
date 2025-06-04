@@ -16,6 +16,42 @@
     <img src="resources/logo.png" alt="Logo" class="logo">
   </header>
 
+  <div id="contenedor_principal" class="contenedor_principal" style="
+    padding: 10px;
+    width: 55%;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background-color: #fff;
+    border-radius: 5px;
+    justify-items: center;
+  ">
+    <h2>Ingrediente</h2>
+    <div class="contenedorIngrediente">
+      <div class="formularioIngrediente">
+        <p>Llena todos los campos para continuar:</p>
+        <form id="formIngrediente">
+          <label for="txtNombre">Nombre:</label>
+          <input type="text" id="txtNombre" name="nombreIngrediente" maxlength="50" required /><br /><br />
+
+          <label for="txtUnidad">Unidad de medida:</label>
+          <input type="text" id="txtUnidad" name="unidadIngrediente" maxlength="10" required /><br /><br />
+
+          <label for="urlImagen">URL de imagen:</label>
+          <input type="url" id="urlImagen" name="nombreIngrediente" maxlength="255" required /><br /><br />
+          <div style="text-align: center;">
+            <button type="submit">Sugerir</button>
+          </div>
+        </form>
+      </div>
+      <div class="imagenIngrediente">
+        <img
+          src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+          alt="Imagen del ingrediente">
+      </div>
+    </div>
+  </div>
+
   <nav id="sideMenu" class="side-menu">
     <div class="menu-header">
       <h3 id="menuUser">Usuario</h3>
@@ -32,6 +68,7 @@
   <div id="overlay" class="overlay"></div>
 
   <script src="sessionManager.js"></script>
+  <script src="sugIngrediente.js"></script>
 </body>
 
 </html>

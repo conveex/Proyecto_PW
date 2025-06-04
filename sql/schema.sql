@@ -46,6 +46,7 @@ CREATE TABLE sugerencias_ingredientes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     unidad VARCHAR(10),
+    imagen_referencia_url VARCHAR(255),
     fecha_subida DATETIME NOT NULL,
     votos_positivos INT DEFAULT 0,
     votos_negativos INT DEFAULT 0,
