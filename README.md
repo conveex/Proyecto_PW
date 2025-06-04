@@ -42,7 +42,9 @@ recetario-inteligente/
 ├── styles.css                # Estilos CSS
 ├── sugerenciasComunidad.html # Página para ver las sugerencias de la comunidad 
 ├── sugerirIngrediente.html   # Página para sugerir ingredientes
+├── sugerirIngrediente.php    # Verifica y sube la sugerencia a la BD
 ├── sugerirPlatillo.html      # Página para sugerir platillos
+├── sugIngrediente.js         # Lógica de la IU en las sugerencias y manejo de excepciones para el usuario
 ├── .gitignore                # Archivos y carpetas excluidos de Git
 └── README.md                 # Este archivo
 ```
