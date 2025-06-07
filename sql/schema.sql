@@ -156,11 +156,14 @@ BEGIN
           AND estado = 'pendiente';
 
         INSERT INTO ingredientes (nombre, unidad)
-        SELECT nombre, unidad
-        FROM sugerencias_ingredientes
-        WHERE id = NEW.id_sugerencia
-          AND votos_positivos >= 5
-          AND estado = 'aprobada';
+        SELECT si.nombre, si.unidad
+        FROM sugerencias_ingredientes si
+        WHERE si.id = NEW.id_sugerencia
+          AND si.votos_positivos >= 5
+          AND si.estado = 'aprobada';
+          AND NOT EXISTS (
+                SELECT 1 FROM ingredientes i WHERE i.nombre = si.nombre
+            );
 
         UPDATE sugerencias_ingredientes
         SET estado = 'rechazada'
@@ -203,7 +206,8 @@ CREATE TRIGGER insertar_platillo_sugerido
 AFTER UPDATE ON sugerencias_platillos
 FOR EACH ROW
 BEGIN
-    -- Verifica si el estado cambió a 'aceptado'
+    DECLARE id_nuevo_platillo INT;
+    -- Verifica si el estado cambió a 'aprobada'
     IF NEW.estado = 'aprobada' AND OLD.estado <> 'aprobada' THEN
 
         -- Insertar en la tabla platillos
@@ -211,11 +215,11 @@ BEGIN
         VALUES (NEW.nombre, NEW.descripcion, NEW.preparacion, NEW.imagen_url);
 
         -- Obtener el ID recién insertado
-        SET @id_nuevo_platillo := LAST_INSERT_ID();
+        SET id_nuevo_platillo := LAST_INSERT_ID();
 
         -- Insertar cada ingrediente asociado a la sugerencia
         INSERT INTO platillos_ingredientes (id_platillo, id_ingrediente, cantidad)
-        SELECT @id_nuevo_platillo, spi.id_ingrediente, spi.cantidad
+        SELECT id_nuevo_platillo, spi.id_ingrediente, spi.cantidad
         FROM sugerencias_platillos_ingredientes spi
         WHERE spi.id_sugerencia = NEW.id;
 

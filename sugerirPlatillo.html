@@ -16,6 +16,55 @@
     <img src="resources/logo.png" alt="Logo" class="logo">
   </header>
 
+  <div id="contenedor_principal" class="contenedor_principal" style="
+    padding: 10px;
+    width: 55%;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background-color: #fff;
+    border-radius: 5px;
+    justify-items: center;
+  ">
+    <h2>Platillo</h2>
+    <div class="contenedorIngrediente">
+      <div class="formularioIngrediente">
+        <p>Llena todos los campos para continuar:</p>
+        <form id="formPlatillo">
+          <label for="txtNombre">Nombre:</label>
+          <input type="text" id="txtNombre" name="nombrePlatillo" maxlength="100" required /><br />
+          <label for="txtDescripcion">Descripción:</label>
+          <textarea id="txtDescripcion" name="descripcionIngrediente" minlength="10" maxlength="10000" placeholder="Escribe aqui..." required></textarea><br /><br />
+          <label for="txtPreparacion">Preparación:</label>
+          <textarea id="txtPreparacion" name="preparacionIngrediente" minlength="10" maxlength="10000" placeholder="Escribe aqui..." required></textarea><br /><br />
+          <label for="urlImagen">URL de imagen:</label>
+          <input type="url" id="urlImagen" name="nombreIngrediente" maxlength="255" required /><br /><br />
+        </form>
+      </div>
+      <div class="imagenIngrediente">
+        <img
+          src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+          alt="Imagen del platillo">
+      </div>
+    </div>
+
+    <main class="contenido-sugPlatillo">
+      <section class="buscador">
+        <h3>Busca y selecciona los ingredientes del platillo:</h3>
+        <input type="text" id="inputIngrediente" placeholder="Ej. tomate, pollo..." />
+        <div id="sugerencias" class="sugerencias"></div>
+      </section>
+
+      <section>
+        <h3>Ingredientes seleccionados:</h3>
+        <ul id="ingredientesSeleccionados" class="ingredientes-lista"></ul>
+        <button id="sugerirPlatillo">Sugerir platillo</button>
+      </section>
+
+    </main>
+
+  </div>
+
   <nav id="sideMenu" class="side-menu">
     <div class="menu-header">
       <h3 id="menuUser">Usuario</h3>
@@ -32,6 +81,7 @@
   <div id="overlay" class="overlay"></div>
 
   <script src="sessionManager.js"></script>
+  <script src="sugerirPlatillo.js"></script>
 </body>
 
 </html>
