@@ -7,6 +7,21 @@
   <title>Recetario Inteligente</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="resources/logo.png" type="image/png">
+  <style>
+    #contenedorSugerencias {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      margin-top: 1em;
+    }
+
+    #contenedorSugerencias .card {
+      width: 90%;
+      max-width: 800px;
+      text-align: left;
+    }
+  </style>
 </head>
 
 <body style="background-color: #d4eaab;">
@@ -15,6 +30,47 @@
     <h1 class="titulo">Sugerencias de la Comunidad</h1>
     <img src="resources/logo.png" alt="Logo" class="logo">
   </header>
+
+  <div id="contenedor_principal" class="contenedor_principal" style="
+    padding: 10px;
+    width: 55%;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    background-color: #fff;
+    border-radius: 5px;
+  ">
+    <main class="contenido">
+      <section style="margin-bottom: 20px;">
+        <h2>Filtrar sugerencias</h2>
+        <label for="filtroTipo">Tipo de sugerencia:</label>
+        <select id="filtroTipo">
+          <option value="platillo">Platillos</option>
+          <option value="ingrediente">Ingredientes</option>
+        </select>
+
+        <label for="filtroOrden" style="margin-left: 20px;">Ordenar por:</label>
+        <select id="filtroOrden">
+          <option value="recientes">Más recientes</option>
+          <option value="antiguas">Más antiguas</option>
+          <option value="mas_votos_positivos">Mayor cantidad de votos positivos</option>
+          <option value="mas_votos_negativos">Mayor cantidad de votos negativos</option>
+          <option value="alfabetico_asc">Orden alfabético ascendente</option>
+          <option value="alfabetico_desc">Orden alfabético descendente</option>
+        </select>
+      </section>
+
+      <section>
+        <div id="contenedorSugerencias" class="resultados"></div>
+      </section>
+
+      <section style="margin-top: 20px;">
+        <button id="prevPage" style="cursor:pointer;">Anterior</button>
+        <span id="infoPagina" style="margin: 0 10px;">1</span>
+        <button id="nextPage" style="cursor:pointer;">Siguiente</button>
+      </section>
+    </main>
+  </div>
 
   <nav id="sideMenu" class="side-menu">
     <div class="menu-header">
@@ -32,6 +88,7 @@
   <div id="overlay" class="overlay"></div>
 
   <script src="sessionManager.js"></script>
+  <script src="sugerenciasComunidad.js"></script>
 </body>
 
 </html>

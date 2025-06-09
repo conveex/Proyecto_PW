@@ -23,33 +23,39 @@ recetario-inteligente/
 │   ├── schema.sql            # Estructura de la base de datos
 │   └── seed.sql              # Datos de ejemplo
 ├── vendor/
-│   └── PHPMailer                   # Libreria requerida para verificación de email (IGNORADO por Git)
-├── confirmar.php                   # Verifica el token del correo
-├── db_config.php                   # Configuración de conexión (IGNORADO por Git)
-├── db_config.php.example           # Plantilla editable para conexión
-├── get_ingredientes_unidades.php   # Devuelve los ingredientes con su unidad de medida en JSON
-├── get_ingredientes.php            # Devuelve los ingredientes en JSON
-├── get_platillos.php               # Devuelve los platillos con sus datos
-├── index.html                      # Página principal
-├── login.php                       # Verifica credenciales con la BD
-├── loginRegistro.js                # Lógica de IU login/registro
-├── logout.php                      # Cierra la sesión de usuario o invitado
-├── recetario.html                  # Página de busqueda de platillos
-├── registro.php                    # Registra datos y envia correo (IGNORADO por Git)
-├── registro.php.example            # Plantilla editable para registro
-├── script.js                       # Lógica del frontend para el recetario
-├── session_status.php              # Verifica el estado de la sesion, obtiene el usuario o indica invitado
-├── sessionManager.js               # Logica frontend para obtener la sesión y generar menú de usuario/invitado
-├── styles.css                      # Estilos CSS
-├── sugerenciasComunidad.html       # Página para ver las sugerencias de la comunidad 
-├── sugerirIngrediente.html         # Página para sugerir ingredientes
-├── sugerirIngrediente.php          # Verifica y sube la sugerencia a la BD
-├── sugerirPlatillo.html            # Página para sugerir platillos
-├── sugerirPlatillo.js              # Lógica de la IU en las sugerencias y manejo de excepciones para el usuario
-├── sugerirPlatillo.php             # Verifica y sube la sugerencia a la BD
-├── sugIngrediente.js               # Lógica de la IU en las sugerencias y manejo de excepciones para el usuario
-├── .gitignore                      # Archivos y carpetas excluidos de Git
-└── README.md                       # Este archivo
+│   └── PHPMailer                      # Libreria requerida para verificación de email (IGNORADO por Git)
+├── confirmar.php                      # Verifica el token del correo
+├── db_config.php                      # Configuración de conexión (IGNORADO por Git)
+├── db_config.php.example              # Plantilla editable para conexión
+├── eliminar_voto_sugerencia.php       # Gestiona el eliminar un voto en una sugerencia
+├── get_ingredientes_unidades.php      # Devuelve los ingredientes con su unidad de medida en JSON
+├── get_ingredientes.php               # Devuelve los ingredientes en JSON
+├── get_platillos.php                  # Devuelve los platillos con sus datos
+├── get_sugerencias_ingredientes.php   # Devuelve las sugerencias de ingredientes
+├── get_sugerencias_platillos.php      # Devuelve las sugerencias de platillos
+├── get_votos_usuario.php              # Devuelve los votos del usuario logeado
+├── index.html                         # Página principal
+├── login.php                          # Verifica credenciales con la BD
+├── loginRegistro.js                   # Lógica de IU login/registro
+├── logout.php                         # Cierra la sesión de usuario o invitado
+├── recetario.html                     # Página de busqueda de platillos
+├── registro.php                       # Registra datos y envia correo (IGNORADO por Git)
+├── registro.php.example               # Plantilla editable para registro
+├── script.js                          # Lógica del frontend para el recetario
+├── session_status.php                 # Verifica el estado de la sesion, obtiene el usuario o indica invitado
+├── sessionManager.js                  # Logica frontend para obtener la sesión y generar menú de usuario/invitado
+├── styles.css                         # Estilos CSS
+├── sugerenciasComunidad.html          # Página para ver las sugerencias de la comunidad 
+├── sugerenciasComunidad.js            # Gestiona toda la lógica detrás de la IU de las sugerencias y sus interacciones
+├── sugerirIngrediente.html            # Página para sugerir ingredientes
+├── sugerirIngrediente.php             # Verifica y sube la sugerencia a la BD
+├── sugerirPlatillo.html               # Página para sugerir platillos
+├── sugerirPlatillo.js                 # Lógica de la IU en las sugerencias y manejo de excepciones para el usuario
+├── sugerirPlatillo.php                # Verifica y sube la sugerencia a la BD
+├── sugIngrediente.js                  # Lógica de la IU en las sugerencias y manejo de excepciones para el usuario
+├── votar_sugerencia.js                # Añade los votos a la base de datos
+├── .gitignore                         # Archivos y carpetas excluidos de Git
+└── README.md                          # Este archivo
 ```
 
 ---

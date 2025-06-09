@@ -28,6 +28,40 @@ body {
   flex-grow: 1;
 }
 
+.header-login {
+  position: relative;
+  background-color: #BFE57E;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  min-height: 70px;
+  padding: 0 1em; 
+}
+
+.header-login .logo {
+  position: absolute;
+  top: 50%;
+  left: 1em;
+  transform: translateY(-50%);
+  width: 52.5px;
+  height: 52.5px;
+  border-radius: 50%;
+}
+
+.header-login .titulo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 1.89em;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .header-login .titulo {
+    font-size: 1.5em;
+  }
+}
+
 .contenido {
   max-width: 945px;
   margin: 10px;
@@ -317,6 +351,54 @@ button:hover {
   gap: 20px;
   padding-top: 5px;
   padding: 20px;
+}
+
+.resultados.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.voto-btn {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.voto-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.voto-btn.activo-positivo {
+  border-color: #4caf50;
+  background-color: #e8f5e9;
+}
+
+.voto-btn.activo-negativo {
+  border-color: #f44336;
+  background-color: #ffebee;
+}
+
+.summary-clickable {
+  cursor: pointer;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.summary-clickable:hover {
+  color: #5b8731;
+}
+
+.img-sugerencia {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 @media screen and (max-width: 600px) {

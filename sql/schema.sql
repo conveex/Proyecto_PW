@@ -100,27 +100,27 @@ BEGIN
         IF NOT EXISTS (
             SELECT 1 FROM sugerencias_ingredientes WHERE id = NEW.id_sugerencia
         ) THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La sugerencia de ingrediente no existe';
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La sugerencia no existe';
         END IF;
         -- Verificar que el usuario no sea el creador de la sugerencia
         IF EXISTS (
             SELECT 1 FROM sugerencias_ingredientes
             WHERE id = NEW.id_sugerencia AND id_usuario = NEW.id_usuario
         ) THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puedes votar tu propia sugerencia de ingrediente';
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puedes votar tu propia sugerencia.';
         END IF;
     ELSEIF NEW.tipo_sugerencia = 'platillo' THEN
         IF NOT EXISTS (
             SELECT 1 FROM sugerencias_platillos WHERE id = NEW.id_sugerencia
         ) THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La sugerencia de platillo no existe';
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La sugerencia no existe';
         END IF;
         -- Verificar que el usuario no sea el creador de la sugerencia
         IF EXISTS (
             SELECT 1 FROM sugerencias_platillos
             WHERE id = NEW.id_sugerencia AND id_usuario = NEW.id_usuario
         ) THEN
-            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puedes votar tu propia sugerencia de platillo';
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'No puedes votar tu propia sugerencia.';
         END IF;
     END IF;
     -- Verificar que el usuario no haya votado ya esta sugerencia
@@ -160,7 +160,7 @@ BEGIN
         FROM sugerencias_ingredientes si
         WHERE si.id = NEW.id_sugerencia
           AND si.votos_positivos >= 5
-          AND si.estado = 'aprobada';
+          AND si.estado = 'aprobada'
           AND NOT EXISTS (
                 SELECT 1 FROM ingredientes i WHERE i.nombre = si.nombre
             );
@@ -170,6 +170,30 @@ BEGIN
         WHERE id = NEW.id_sugerencia
           AND votos_negativos >= 5
           AND estado = 'pendiente';
+    END IF;
+END;
+
+CREATE TRIGGER actualizar_estado_sugerencia_ingrediente_delete
+AFTER DELETE ON votos_sugerencias
+FOR EACH ROW
+BEGIN
+    IF OLD.tipo_sugerencia = 'ingrediente' THEN
+        IF OLD.voto = 'positivo' THEN
+            UPDATE sugerencias_ingredientes
+            SET votos_positivos = votos_positivos - 1
+            WHERE id = OLD.id_sugerencia;
+        ELSE
+            UPDATE sugerencias_ingredientes
+            SET votos_negativos = votos_negativos - 1
+            WHERE id = OLD.id_sugerencia;
+        END IF;
+
+        UPDATE sugerencias_ingredientes
+        SET estado = 'pendiente'
+        WHERE id = OLD.id_sugerencia
+          AND votos_positivos < 5
+          AND votos_negativos < 5
+          AND estado != 'pendiente';
     END IF;
 END;
 
@@ -199,6 +223,30 @@ BEGIN
         WHERE id = NEW.id_sugerencia
           AND votos_negativos >= 5
           AND estado = 'pendiente';
+    END IF;
+END;
+
+CREATE TRIGGER actualizar_estado_sugerencia_platillo_delete
+AFTER DELETE ON votos_sugerencias
+FOR EACH ROW
+BEGIN
+    IF OLD.tipo_sugerencia = 'platillo' THEN
+        IF OLD.voto = 'positivo' THEN
+            UPDATE sugerencias_platillos
+            SET votos_positivos = votos_positivos - 1
+            WHERE id = OLD.id_sugerencia;
+        ELSE
+            UPDATE sugerencias_platillos
+            SET votos_negativos = votos_negativos - 1
+            WHERE id = OLD.id_sugerencia;
+        END IF;
+
+        UPDATE sugerencias_platillos
+        SET estado = 'pendiente'
+        WHERE id = OLD.id_sugerencia
+          AND votos_positivos < 5
+          AND votos_negativos < 5
+          AND estado != 'pendiente';
     END IF;
 END;
 
